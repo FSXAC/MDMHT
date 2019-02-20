@@ -1,4 +1,4 @@
-/* Updated 2019-02-19 */
+/* Updated 2019-02-20 */
 
 
 /* Global color constants */
@@ -304,4 +304,10 @@ p[style^='caption:'] {
 .typora-quick-open-item.active {
 	color: var(--active-file-text-color);
 	font-weight: bold;
+}
+
+/* Emoji vertical alignment fix */
+span.md-emoji-span {
+	position: relative;
+	top: -0.1em;
 }
