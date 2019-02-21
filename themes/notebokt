@@ -1,0 +1,289 @@
+/* Updated 2019-02-06 */
+
+
+/* Global color constants */
+:root {
+	--font-color: #404a4e;
+	--link-color: #4183C4;
+	--side-bar-bg-color: #fafafa;
+	--control-text-color: #777;
+	--meta-text-color: #aaa;
+	--border-color: #ddd;
+
+	--blockquote-width: 6px;
+}
+
+/* Export fonts include */
+@include-when-export url(https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Coming+Soon);
+
+/* Use local fonts */
+@font-face {
+	font-family: 'Amatic SC';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Amatic SC Regular'), url('./notebokt/amaticsc-regular.woff') format('woff')
+}
+@font-face {
+	font-family: 'Amatic SC';
+	font-style: normal;
+	font-weight: bold;
+	src: local('Amatic SC Bold'), url('./notebokt/amaticsc-bold.woff') format('woff')
+}
+@font-face {
+	font-family: 'Coming Soon';
+	font-style: normal;
+	font-weight: normal;
+	src: local('Coming Soon Regular'), url('./notebokt/comingsoon.woff') format('woff')
+}
+
+/* Export to PDF/prints style override */
+@media print {
+	html { font-size: 13px; }
+	table, pre { page-break-inside: avoid; }
+	pre { word-wrap: break-word; }
+
+	/* Page break for pdf exports */
+	h1 { page-break-before: always; }
+	h1:first-of-type { page-break-before: avoid; }
+}
+
+/* General Text */
+html {
+	font-size: 20px;
+	background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAEAAAAAAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAAUABQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKr6fp7WD3BNxcXH2iYygSsCIQQBsXAGFGM4OTknmgCxRRRQAUUUUAFFFFAH//2Q==');
+	background-repeat: repeat;
+}
+body {
+	font-family: "Coming Soon", serif;
+	color: var(--font-color);
+	line-height: 1.1;
+	background-color: transparent;
+}
+
+/* Markdown content */
+#write {
+	max-width: 960px;
+	padding-top: 20px;
+	padding-bottom: 100px;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+#write > ul:first-child,
+#write > ol:first-child { margin-top: 30px; }
+body > *:first-child { margin-top: 0 !important; }
+body > *:last-child { margin-bottom: 0 !important; }
+
+/* Front matter / meta block style */
+#write pre.md-meta-block {
+	padding: 1rem;
+	line-height: 1.1;
+	font-size: 0.7em;
+	background-color: transparent;
+	border: 2px dotted var(--border-color);
+	color: var(--meta-text-color);
+	margin-top: 0 !important;
+	margin-bottom: 2em;
+}
+
+/* Anchor text */
+a {
+	color: var(--link-color);
+	text-decoration: none;
+}
+
+/* Header text general styles */
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	line-height: 1.4;
+	font-family: "Amatic SC", serif;
+}
+
+/* Header text custom font sizes */
+h1 {
+	font-size: 3em;
+	border-bottom: 1px solid var(--font-color);
+}
+h2 {
+	font-size: 2em;
+	border-bottom: 1px solid var(--border-color);
+}
+h3 { font-size: 1.5em; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1.15em; }
+
+/* Header anchor disable style */
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor,
+h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+	text-decoration: none;
+}
+
+/* Header code style */
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code,
+h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+	font-size: inherit;
+}
+
+/* Text/Header interaction edge cases styles */
+body > h2:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+body > h1:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+body > h1:first-child + h2 {
+	margin-top: 0;
+	padding-top: 0;
+}
+body > h3:first-child, body > h4:first-child,
+body > h5:first-child, body > h6:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+a:first-child h1, a:first-child h2, a:first-child h3,
+a:first-child h4, a:first-child h5, a:first-child h6 {
+	margin-top: 0;
+	padding-top: 0;
+}
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p { margin-top: 0; }
+
+/* List styles */
+li p.first { display: inline-block; }
+ul, ol { padding-left: 30px; }
+ul:first-child, ol:first-child { margin-top: 0; }
+ul:last-child, ol:last-child { margin-bottom: 0; }
+
+/* Block quote */
+blockquote {
+	border: 1px solid var(--border-color);
+	border-left: var(--blockquote-width) solid var(--control-text-color);
+	border-radius: var(--blockquote-width);
+	padding: 8px;
+	padding-left: 1em;
+}
+blockquote blockquote { padding-right: 2px; }
+blockquote.primary { border-left-color: #4183C4; }
+blockquote.info { border-left-color: darkcyan; }
+blockquote.success { border-left-color: darkgreen; }
+blockquote.warning { border-left-color: #FD971F; }
+blockquote.danger { border-left-color: crimson; }
+
+/* Table styles */
+table { padding: 0; word-break: initial; }
+table tr {
+	border-top: 1px solid var(--font-color);
+	margin: 0;
+	padding: 0;
+}
+table tr:first-child { border-top: 0px; }
+table tr th {
+	font-weight: bold;
+	border: 0;
+	border-bottom: 2px solid var(--font-color);
+	text-align: left;
+	margin: 0;
+	padding: 6px 13px; /* TODO: use constant */
+}
+table tr td {
+	text-align: left;
+	margin: 0;
+	padding: 6px 13px;
+}
+table tr th:first-child, table tr td:first-child { margin-top: 0; }
+table tr th:last-child, table tr td:last-child { margin-bottom: 0; }
+
+/* Highlighted text */
+mark {
+	background: #FFB;
+	border-radius: 3px;
+	padding: 0 4px;
+}
+
+/* General fences style for monospace text */
+.md-fences, code, tt {
+	border: 1px solid var(--border-color);
+	border-radius: 3px;
+	color: var(--font-color);
+	font-family: "Fira Code", Consolas, "Liberation Mono", Courier, monospace;
+	padding: 2px 4px 0px 4px;
+	font-size: 0.8em;
+	line-height: 1.3;
+}
+
+/* Code fence styles */
+.md-fences {
+	margin-bottom: 15px;
+	margin-top: 15px;
+	padding: 0.2em 1em;
+	padding-top: 8px;
+	padding-bottom: 6px;
+	/* border-radius: 5px; */
+	border: none;
+	/* background-color: #FFF; */
+	background-color: #FFE;
+	box-shadow: 0px 4px 11px -2px rgba(0,0,0,0.4);
+}
+
+/* Code fence CodeMirror syntax colors style (Summerfruit) */
+.cm-s-inner { background: #fdfdfd; color: #111; }
+.cm-s-inner div.CodeMirror-cursor { border-left: 2px solid #111; }
+.cm-s-inner .CodeMirror-selected { background: #b7dce8; }
+.cm-s-inner .cm-comment { color: #22a21f; background: #dbf3cd60; }
+.cm-s-inner .cm-keyword { color: #fb6620; }
+.cm-s-inner .cm-string { color: #1586d2; }
+.cm-s-inner .cm-variable-2 { color: #F92672; }
+.cm-s-inner .cm-property { color: #13806d; }
+.cm-s-inner .cm-atom { color: #8a4cff; }
+.cm-s-inner .cm-number { color: #8a4cff; }
+.cm-s-inner .cm-operator { color: #fb6620; }
+.cm-s-inner .CodeMirror-linenumber { color: #22a21f; }
+
+/* Task list */
+.task-list{ padding-left: 0; }
+.task-list-item { padding-left:32px; }
+
+/* Image meta box */
+.md-image > .md-meta {
+	border: 1px solid var(--border-color);
+	border-radius: 3px;
+	font-family: "Fira Code", Consolas, "Liberation Mono", Courier, monospace;
+	padding: 2px 4px 0px 4px;
+	font-size: 0.9em;
+	color: inherit;
+}
+
+/* Image style */
+img {
+	box-shadow: 0px 4px 11px -2px rgba(0,0,0,0.4);
+}
+
+/* Focus mode style modifiers */
+#write > h3.md-focus:before { left: -1.5625rem; top: .375rem; }
+#write > h4.md-focus:before { left: -1.5625rem; top: .285714286rem; }
+#write > h5.md-focus:before { left: -1.5625rem; top: .285714286rem; }
+#write > h6.md-focus:before { left: -1.5625rem; top: .285714286rem; }
+.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.12); }
+
+/* Table of content */
+.md-toc { margin-top: 20px; padding-bottom: 20px; }
+
+/* Typora UI */
+#typora-quick-open {
+	border: 1px solid #ddd;
+	background-color: #f8f8f8;
+}
+#typora-quick-open-item {
+	background-color: #FAFAFA;
+	border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+	border-style: solid;
+	border-width: 1px;
+}
+#md-notification:before { top: 10px; }
+
+/* Image caption classes */
+.caption {
+	text-align: center;
+	font-style: italic;
+}
