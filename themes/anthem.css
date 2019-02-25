@@ -1,0 +1,288 @@
+/* Updated 2019-02-21 */
+
+
+/* Global color constants */
+:root {
+	--anthem-theme: #EF4E22;
+	--anthem-theme-trans: #EF4E2240;
+
+	/* Typora CSS variables */
+	--bg-color: #ffffff;
+	--text-color: #000;
+	--md-char-color: #C7C5C5;
+	--meta-content-color: #5b808d; /*change color of meta contents like image text or link address in markdown */
+
+	--primary-color: #428bca; /* color of primary buttons */
+	--primary-btn-border-color: #285e8e;
+	--primary-btn-text-color: #fff;
+
+	--window-border: 1px solid #eee; /*border for sidebar, etc*/
+
+	--active-file-border-color: var(--anthem-theme);
+	--active-file-text-color: white;
+	--active-file-bg-color: #404a4e;
+
+	--side-bar-bg-color: #fafafa; /*change background of sidebar*/
+	--item-hover-bg-color: #808a8e; /*background of control items when hover, like menu in sidebar*/
+	--item-hover-text-color: inherit;
+	
+	--monospace-font: "Fira Code", Consolas, "Liberation Mono", Courier, monospace;
+	--font: "Zanzinger", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+	--header-font: "Zanzinger", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+
+	/* Custom variables */
+	--header-color: var(--text-color);
+	--link-color: var(--anthem-theme);
+	--control-text-color: #777;
+	--meta-text-color: #aaa;
+	--border-color: #ddd;
+
+	--blockquote-width: 8px;
+	--table-head-width: 3px;
+}
+
+/* Export fonts include */
+@include-when-export url(https://www.ea.com/assets/fonts/zanzinger/zanzinger-el.woff);
+
+/* Use local fonts */
+@font-face {
+	font-family: 'Zanzinger';
+	font-style: normal;
+	font-weight: 100;
+	src: local('Zanzinger Extra-Light'), url('./anthem/zanzinger-el.woff') format('woff')
+}
+
+/* Export to PDF/prints style override */
+@media print {
+	html { font-size: 14px; }
+	table, pre { page-break-inside: avoid; }
+	pre { word-wrap: break-word; }
+
+	/* Page break for pdf exports */
+	h1 { page-break-before: always; }
+	h1:first-of-type { page-break-before: avoid; }
+}
+
+/* General Text */
+html { font-size: 18px; }
+body {
+	font-family: var(--font);
+	line-height: 1.5;
+}
+
+/* Markdown content */
+#write {
+	max-width: 960px;
+	padding-top: 20px;
+	padding-bottom: 100px;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+#write > ul:first-child,
+#write > ol:first-child { margin-top: 30px; }
+body > *:first-child { margin-top: 0 !important; }
+body > *:last-child { margin-bottom: 0 !important; }
+
+/* Front matter / meta block style */
+#write pre.md-meta-block {
+	padding: 1rem;
+	line-height: 1.1;
+	background-color: transparent;
+	border: 1px dotted var(--anthem-theme);
+	color: var(--meta-text-color);
+	margin-top: 0 !important;
+	margin-bottom: 2em;
+}
+
+/* Anchor text */
+a {
+	color: var(--link-color);
+	text-decoration: none;
+}
+
+/* Header text general styles */
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	line-height: 1.4;
+	font-family: var(--header-font);
+	color: var(--header-color);
+}
+
+/* Header text custom font sizes */
+h1 { font-size: 3em; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.5em; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1.15em; }
+
+/* Header anchor disable style */
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor,
+h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+	text-decoration: none;
+}
+
+/* Header code style */
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code,
+h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+	font-size: inherit;
+}
+
+/* Text/Header interaction edge cases styles */
+body > h2:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+body > h1:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+body > h1:first-child + h2 {
+	margin-top: 0;
+	padding-top: 0;
+}
+body > h3:first-child, body > h4:first-child,
+body > h5:first-child, body > h6:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+a:first-child h1, a:first-child h2, a:first-child h3,
+a:first-child h4, a:first-child h5, a:first-child h6 {
+	margin-top: 0;
+	padding-top: 0;
+}
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p { margin-top: 0; }
+
+/* List styles */
+li p.first { display: inline-block; }
+ul, ol { padding-left: 30px; }
+ul:first-child, ol:first-child { margin-top: 0; }
+ul:last-child, ol:last-child { margin-bottom: 0; }
+
+/* Block quote */
+blockquote {
+	border: 1px solid var(--anthem-theme);
+	border-left: var(--blockquote-width) solid var(--anthem-theme);
+	padding: 8px;
+	padding-left: 1em;
+	margin: auto;
+	/* transform: skewX(30deg); */
+}
+/* blockquote > * { transform: skewX(-30deg); } */
+blockquote[style^='angled:'] { transform: skewX(30deg); }
+blockquote[style^='angled:'] > * { transform: skewX(-30deg); }
+
+/* Table styles */
+table { padding: 0; word-break: initial; }
+table tr {
+	border-top: 1px solid var(--text-color);
+	margin: 0;
+	padding: 0;
+}
+table tr:first-child { border-top: 0px; }
+table tr th {
+	font-weight: bold;
+	border: 0;
+	border-bottom: 1px solid var(--text-color);
+	text-align: left;
+	margin: 0;
+	padding: 6px 13px;
+}
+table tr td {
+	text-align: left;
+	margin: 0;
+	padding: 6px 13px;
+}
+table tr th:first-child, table tr td:first-child { margin-top: 0; }
+table tr th:last-child, table tr td:last-child { margin-bottom: 0; }
+
+/* Highlighted text */
+mark {
+	background: var(--anthem-theme-trans);
+	border-radius: 3px;
+	padding: 0 4px;
+}
+
+/* General fences style for monospace text */
+code, tt {
+	background-color: var(--anthem-theme);
+	margin: 0 0.2em;
+	color: white;
+	font-family: var(--monospace-font);
+	padding: 2px 4px 0px 4px;
+	font-size: 0.75em;
+	border-radius: 4px;
+}
+
+/* Code fence styles */
+.md-fences {
+	font-size: 0.75em;
+	background-color: transparent;
+	border: 1px solid var(--border-color);
+	margin-bottom: 15px;
+	margin-top: 15px;
+	padding: 0.2em 1em;
+	padding-top: 8px;
+	padding-bottom: 6px;
+	border-radius: 4px;
+}
+
+/* Code fence CodeMirror syntax colors style (Summerfruit) */
+.cm-s-inner { background: #fdfdfd; color: #111; }
+.cm-s-inner div.CodeMirror-cursor { border-left: 2px solid #111; }
+.cm-s-inner .CodeMirror-selected { background: #b7dce8; }
+.cm-s-inner .cm-comment { color: var(--anthem-theme); background: var(--anthem-theme-trans); }
+.cm-s-inner .cm-keyword { color: #fb6620; }
+.cm-s-inner .cm-string { color: #1586d2; }
+.cm-s-inner .cm-variable-2 { color: #F92672; }
+.cm-s-inner .cm-property { color: #13806d; }
+.cm-s-inner .cm-atom { color: #8a4cff; }
+.cm-s-inner .cm-number { color: #8a4cff; }
+.cm-s-inner .cm-operator { color: #fb6620; }
+.cm-s-inner .CodeMirror-linenumber { color: var(--anthem-theme); }
+
+/* Task list */
+.task-list{ padding-left: 0; }
+.task-list-item { padding-left:32px; }
+
+/* Image meta box */
+.md-image > .md-meta {
+	border: 1px solid var(--border-color);
+	border-radius: 3px;
+	font-family: var(--monospace-font);
+	padding: 2px 4px 0px 4px;
+	font-size: 0.75em;
+	color: inherit;
+}
+
+/* Focus mode style modifiers */
+#write > h3.md-focus:before { left: -1.5625rem; top: .375rem; }
+#write > h4.md-focus:before { left: -1.5625rem; top: .285714286rem; }
+#write > h5.md-focus:before { left: -1.5625rem; top: .285714286rem; }
+#write > h6.md-focus:before { left: -1.5625rem; top: .285714286rem; }
+.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.12); }
+
+/* Table of content */
+.md-toc { margin-top: 20px; padding-bottom: 20px; }
+
+/* Typora UI */
+#typora-quick-open {
+	border: 1px solid #ddd;
+	background-color: #f8f8f8;
+}
+#typora-quick-open-item {
+	background-color: #FAFAFA;
+	border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+	border-style: solid;
+	border-width: 1px;
+}
+#md-notification:before { top: 10px; }
+
+/* Image caption classes */
+p[style^='caption:'] {
+	text-align: center;
+	font-style: italic;
+}
+
+/* Horizontal Rule */
+hr { border-color: var(--anthem-theme); }
