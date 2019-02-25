@@ -1,0 +1,291 @@
+/* Updated 2019-02-22 */
+
+
+/* Global color constants */
+:root {
+	/* Thematic color */
+	--fitbod-orange: #ff6e60;
+	--fitbod-orange-trans: #ff6e6060;
+	--fitbod-bg: #2b2b29;
+	--fitbod-text: #ffffff;
+	--fitbod-text-quiet: #dddddd;
+	--fitbod-secondary: #4d5358;
+	--fitbod-tertiary: #2e3335;
+	--fitbod-tertiary-trans: #2e333580;
+	--fitbod-quaternary: #34393b;
+
+	/* Typora CSS variables */
+	--bg-color: var(--fitbod-bg);
+	--text-color: var(--fitbod-text);
+	--md-char-color: var(--fitbod-tertiary);
+
+	--window-border: 1px solid var(--fitbod-quaternary); /*border for sidebar, etc*/
+
+	--active-file-border-color: rgba(255, 110, 96, 0.5);
+	--active-file-text-color: var(--fitbod-text);
+	--active-file-bg-color: var(--fitbod-secondary);
+
+	--side-bar-bg-color: var(--fitbod-tertiary);
+	--item-hover-bg-color: var(--fitbod-tertiary-trans);
+	--item-hover-text-color: inherit;
+	
+	--monospace-font: "Fira Code", Consolas, "Liberation Mono", Courier, monospace;
+	--font: futura-pt, Helvetica, Arial, "Microsoft Yahei", sans-serif;
+	--header-font: futura-pt, Helvetica, Arial, "Microsoft Yahei", sans-serif;
+
+	/* Custom variables */
+	--header-color: var(--text-color);
+	--link-color: var(--fitbod-orange);
+	--meta-text-color: var(--fitbod-text-quiet);
+	--border-color: var(--fitbod-quaternary);
+
+	--blockquote-width: 8px;
+	--table-head-width: 3px;
+}
+
+/* Export fonts include */
+@include-when-export url(https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i&amp;subset=latin-ext);
+
+@font-face {
+	font-family: futura-pt;
+	src: url("https://use.typekit.net/af/c4c302/000000000000000000012192/27/l?subset_id=2&fvd=n6&v=3") format("woff2"), url("https://use.typekit.net/af/c4c302/000000000000000000012192/27/d?subset_id=2&fvd=n6&v=3") format("woff"), url("https://use.typekit.net/af/c4c302/000000000000000000012192/27/a?subset_id=2&fvd=n6&v=3") format("opentype");
+	font-style: normal;
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: futura-pt;
+	src: url("https://use.typekit.net/af/309dfe/000000000000000000010091/27/l?subset_id=2&fvd=n7&v=3") format("woff2"), url("https://use.typekit.net/af/309dfe/000000000000000000010091/27/d?subset_id=2&fvd=n7&v=3") format("woff"), url("https://use.typekit.net/af/309dfe/000000000000000000010091/27/a?subset_id=2&fvd=n7&v=3") format("opentype");
+	font-style: normal;
+	font-weight: 700;
+}
+
+/* Export to PDF/prints style override */
+@media print {
+	html { font-size: 13px; }
+	table, pre { page-break-inside: avoid; }
+	pre { word-wrap: break-word; }
+
+	/* Page break for pdf exports */
+	h1 { page-break-before: always; }
+	h1:first-of-type { page-break-before: avoid; }
+}
+
+/* General Text */
+html { font-size: 16px; }
+body {
+	font-family: var(--font);
+	line-height: 1.4;
+}
+
+/* Markdown content */
+#write {
+	max-width: 960px;
+	padding-top: 20px;
+	padding-bottom: 100px;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+#write > ul:first-child,
+#write > ol:first-child { margin-top: 30px; }
+body > *:first-child { margin-top: 0 !important; }
+body > *:last-child { margin-bottom: 0 !important; }
+
+/* Front matter / meta block style */
+#write pre.md-meta-block {
+	padding: 1rem;
+	line-height: 1.1;
+	background-color: transparent;
+	border: 2px dotted var(--border-color);
+	color: var(--meta-text-color);
+	margin-top: 0 !important;
+	margin-bottom: 2em;
+}
+
+/* Anchor text */
+a {
+	color: var(--link-color);
+	text-decoration: none;
+	transition: 0.3s ease opacity;
+}
+a:hover {
+	opacity: 0.5;
+	text-decoration: none;
+}
+
+/* Header text general styles */
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	line-height: 1.4;
+	font-family: var(--header-font);
+	font-weight: bold;
+	color: var(--header-color);
+	letter-spacing: -0.45px;
+	word-spacing: 0.5px;
+}
+
+/* Header text custom font sizes */
+h1 { font-size: 3em; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.5em; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1.15em; }
+
+/* Header anchor disable style */
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor,
+h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+	text-decoration: none;
+}
+
+/* Header code style */
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code,
+h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+	font-size: inherit;
+}
+
+/* Text/Header interaction edge cases styles */
+body > h2:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+body > h1:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+body > h1:first-child + h2 {
+	margin-top: 0;
+	padding-top: 0;
+}
+body > h3:first-child, body > h4:first-child,
+body > h5:first-child, body > h6:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+a:first-child h1, a:first-child h2, a:first-child h3,
+a:first-child h4, a:first-child h5, a:first-child h6 {
+	margin-top: 0;
+	padding-top: 0;
+}
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p { margin-top: 0; }
+
+/* List styles */
+li p.first { display: inline-block; }
+ul, ol { padding-left: 30px; }
+ul:first-child, ol:first-child { margin-top: 0; }
+ul:last-child, ol:last-child { margin-bottom: 0; }
+
+/* Block quote */
+blockquote {
+	/* border: 1px solid var(--border-color); */
+	background-color: var(--fitbod-quaternary);
+	border-left: var(--blockquote-width) solid var(--fitbod-orange);
+	padding: 8px;
+	padding-left: 1em;
+}
+
+/* Table styles */
+table { padding: 0; word-break: initial; border-bottom: var(--table-head-width) solid var(--text-color); }
+table tr {
+	margin: 0;
+	padding: 0;
+}
+table tr:first-child { border-top: 0px; }
+table tr th {
+	font-weight: bold;
+	border: 0;
+	border-bottom: var(--table-head-width) solid var(--text-color);
+	text-align: left;
+	margin: 0;
+	padding: 6px 13px; /* TODO: use constant */
+}
+table tr td {
+	text-align: left;
+	margin: 0;
+	padding: 6px 13px;
+}
+table tr th:first-child, table tr td:first-child { margin-top: 0; }
+table tr th:last-child, table tr td:last-child { margin-bottom: 0; }
+
+/* Highlighted text */
+mark {
+	background: var(--fitbod-orange-trans);
+	padding: 0 4px;
+	color: inherit;
+}
+
+/* General fences style for monospace text */
+.md-fences, code, tt {
+	border: 1px solid var(--fitbod-secondary);
+	color: var(--text-color);
+	font-family: var(--monospace-font);
+	padding: 2px 4px 0px 4px;
+	font-size: 0.9em;
+}
+
+/* Code fence styles */
+.md-fences {
+	border: 0;
+	background-color: var(--fitbod-quaternary);
+	margin-bottom: 15px;
+	margin-top: 15px;
+	padding: 0.2em 1em;
+	padding-top: 8px;
+	padding-bottom: 6px;
+}
+
+/* Code fence CodeMirror syntax colors style (Summerfruit) */
+.cm-s-inner { background: var(--fitbod-bg); color: var(--fitbod-text); }
+.cm-s-inner div.CodeMirror-cursor { border-left: 2px solid var(--fitbod-text); }
+.cm-s-inner .cm-attribute { color: #f49; }
+.cm-s-inner .cm-builtin { color: var(--fitbod-orange); }
+.cm-s-inner .cm-def { color: #49F; }
+.cm-s-inner .cm-comment { color: var(--fitbod-orange); background: var(--fitbod-orange-trans); }
+.cm-s-inner .cm-keyword { color: var(--fitbod-orange); }
+.cm-s-inner .cm-string { color: #49f; }
+.cm-s-inner .cm-variable { color: #f49; }
+.cm-s-inner .cm-variable-2 { color: #f49; }
+.cm-s-inner .cm-property { color: #4f9; }
+.cm-s-inner .cm-atom { color: #94f; }
+.cm-s-inner .cm-number { color: #94f; }
+.cm-s-inner .cm-operator { color: var(--fitbod-orange); }
+.cm-s-inner .cm-quote { color: #4f9; }
+.cm-s-inner .CodeMirror-linenumber { color: #4f9; }
+
+/* Task list */
+.task-list{ padding-left: 0; }
+.task-list-item { padding-left:32px; }
+
+/* Image meta box */
+.md-image > .md-meta {
+	border: 1px solid var(--border-color);
+	border-radius: 3px;
+	font-family: var(--monospace-font);
+	padding: 2px 4px 0px 4px;
+	font-size: 0.9em;
+	color: inherit;
+}
+
+/* Focus mode style modifiers */
+#write > h3.md-focus:before { left: -1.5625rem; top: .375rem; }
+#write > h4.md-focus:before { left: -1.5625rem; top: .285714286rem; }
+#write > h5.md-focus:before { left: -1.5625rem; top: .285714286rem; }
+#write > h6.md-focus:before { left: -1.5625rem; top: .285714286rem; }
+.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.12); }
+
+/* Table of content */
+.md-toc { margin-top: 20px; padding-bottom: 20px; }
+
+#md-notification:before { top: 10px; }
+
+/* Image caption classes */
+p[style^='caption:'] {
+	text-align: center;
+	font-style: italic;
+}
+
+/* Emoji height alignment */
+#write span.md-emoji-span {
+	position: relative;
+	top: -0.14em;
+}
