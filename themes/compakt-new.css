@@ -1,18 +1,38 @@
-/* Updated 2019-02-20 */
+/* Updated 2019-02-22 */
 
 
 /* Global color constants */
 :root {
-	--font-color: #404a4e;
+	/* Typora CSS variables */
+	--bg-color: #ffffff;
+	--text-color: #404a4e;
+	--md-char-color: #C7C5C5;
+	--meta-content-color: #5b808d; /*change color of meta contents like image text or link address in markdown */
+
+	--primary-color: #428bca; /* color of primary buttons */
+	--primary-btn-border-color: #285e8e;
+	--primary-btn-text-color: #fff;
+
+	--window-border: 1px solid #eee; /*border for sidebar, etc*/
+
+	--active-file-border-color: #888;
+	--active-file-text-color: white;
+	--active-file-bg-color: #404a4e;
+
+	--side-bar-bg-color: #fafafa; /*change background of sidebar*/
+	--item-hover-bg-color: #808a8e; /*background of control items when hover, like menu in sidebar*/
+	--item-hover-text-color: inherit;
+	
+	--monospace-font: "Fira Code", Consolas, "Liberation Mono", Courier, monospace;
+	--font: "Open Sans", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+	--header-font: "HK Grotesk", Helvetica, Arial, "Microsoft Yahei", sans-serif;
+
+	/* Custom variables */
 	--header-color: #202828;
 	--link-color: #4183C4;
-	--side-bar-bg-color: #fafafa;
 	--control-text-color: #777;
 	--meta-text-color: #aaa;
 	--border-color: #ddd;
-
-	--active-file-text-color: white;
-	--active-file-bg-color: #404a4e;
 
 	--blockquote-width: 6px;
 	--table-head-width: 3px;
@@ -61,20 +81,25 @@
 
 /* Export to PDF/prints style override */
 @media print {
-	html { font-size: 13px; }
+	html { font-size: 10px; }
 	table, pre { page-break-inside: avoid; }
 	pre { word-wrap: break-word; }
 
 	/* Page break for pdf exports */
 	h1 { page-break-before: always; }
 	h1:first-of-type { page-break-before: avoid; }
+	body { line-height: 1.2; }
+	code, tt {
+		border-radius: 2px;
+		padding: 1px 1px 0px 1px;
+		font-size: 0.8em;
+	}
 }
 
 /* General Text */
 html { font-size: 16px; }
 body {
-	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
-	color: var(--font-color);
+	font-family: "Open Sans", Helvetica, Arial, "Microsoft Yahei", sans-serif;
 	line-height: 1.35;
 }
 
@@ -112,7 +137,7 @@ a {
 h1, h2, h3, h4, h5, h6 {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
-	line-height: 1.4;
+	line-height: 1.2;
 	font-family: "HK Grotesk", Helvetica, Arial, "Microsoft Yahei", sans-serif;
 	font-weight: bold;
 	color: var(--header-color);
@@ -123,11 +148,11 @@ h1, h2, h3, h4, h5, h6 {
 /* Header text custom font sizes */
 h1 {
 	font-size: 3em;
-	border-bottom: 1px solid var(--font-color);
+	border-bottom: 1px solid var(--text-color);
 }
 h2 {
 	font-size: 2em;
-	border-bottom: 1px solid var(--border-color);
+	border-bottom: 1px dotted var(--text-color);
 }
 h3 { font-size: 1.5em; }
 h4 { font-size: 1.25em; }
@@ -192,9 +217,9 @@ blockquote.warning { border-left-color: #FD971F; }
 blockquote.danger { border-left-color: crimson; }
 
 /* Table styles */
-table { padding: 0; word-break: initial; border-bottom: var(--table-head-width) solid var(--font-color); }
+table { padding: 0; word-break: initial; border-bottom: var(--table-head-width) solid var(--text-color); }
 table tr {
-	border-top: 1px solid var(--font-color);
+	border-top: 1px solid var(--text-color);
 	margin: 0;
 	padding: 0;
 }
@@ -202,7 +227,7 @@ table tr:first-child { border-top: 0px; }
 table tr th {
 	font-weight: bold;
 	border: 0;
-	border-bottom: var(--table-head-width) solid var(--font-color);
+	border-bottom: var(--table-head-width) solid var(--text-color);
 	text-align: left;
 	margin: 0;
 	padding: 6px 13px; /* TODO: use constant */
@@ -226,7 +251,7 @@ mark {
 .md-fences, code, tt {
 	border: 1px solid var(--border-color);
 	border-radius: 3px;
-	color: var(--font-color);
+	color: var(--text-color);
 	font-family: "Fira Code", Consolas, "Liberation Mono", Courier, monospace;
 	padding: 2px 4px 0px 4px;
 	font-size: 0.9em;
@@ -265,7 +290,7 @@ mark {
 .md-image > .md-meta {
 	border: 1px solid var(--border-color);
 	border-radius: 3px;
-	font-family: "Fira Code", Consolas, "Liberation Mono", Courier, monospace;
+	font-family: var(--monospace-font);
 	padding: 2px 4px 0px 4px;
 	font-size: 0.9em;
 	color: inherit;
@@ -300,14 +325,8 @@ p[style^='caption:'] {
 	font-style: italic;
 }
 
-/* UI active selection style */
-.typora-quick-open-item.active {
-	color: var(--active-file-text-color);
-	font-weight: bold;
-}
-
-/* Emoji vertical alignment fix */
-span.md-emoji-span {
+/* Emoji height alignment */
+#write span.md-emoji-span {
 	position: relative;
-	top: -0.1em;
+	top: -0.14em;
 }
