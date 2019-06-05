@@ -1,0 +1,77 @@
+
+/* @include-when-export url(https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i&amp;subset=latin-ext); */
+@include url(https://fonts.googleapis.com/css?family=Open+Sans:300,400);
+@include url(https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css);
+
+/* Page style */
+/* Page style */
+html { font-size: 16px; }
+body {
+	cursor: default;
+	font-family: "Open Sans", Helvetica, "Microsoft Yahei", sans-serif;
+	line-height: 1.5;
+	color: black;
+}
+
+/* Header text custom font sizes */
+h1 {
+	font-size: 3em;
+	line-height: 1.1;
+}
+h2 {
+	font-size: 2em;
+	line-height: 1.2;
+}
+h3 {
+	font-size: 1.5em;
+	line-height: 1.3;
+}
+h4 {
+	font-size: 1.25em;
+}
+h5 {
+	font-size: 1.15em;
+}
+
+/* Nav bar */
+li.nav-item.active a { border-bottom: 2px solid black; }
+li.nav-item { color: black; }
+.navbar-light .navbar-nav .nav-link { color: black; }
+
+/* Make dictionaries align better */
+.dl-horizontal > dt { text-align: right; }
+.dl-horizontal > dd { margin-bottom: 0; }
+@media (max-width: 768px) {
+    .dl-horizontal > dt { text-align: left; margin-top: .4em; }
+}
+
+/* Make footer more spacious */
+footer { margin: 2em 0; }
+
+/* Paragraph vertical spacing */
+p { margin: .5em 0; }
+
+/* Increase anchor color contrast */
+a { color: #0050C9; }
+a:hover { color: #A92626; }
+.text-light > a { color: #6AF; }
+.text-light > a:hover { color: #f88; }
+
+.btn-xs { padding: 0 .25em; font-size: 0.9em; }
+
+/* Avatar image are round */
+img.avatar { border-radius: 50%; }
+
+/* Blog texts */
+#blog-content p {
+	margin: 1.5em 0;
+}
+#blog-content img {
+	max-width: 100%;
+}
+#blog-content #markdown-toc li {
+	list-style: none;
+}
+#blog-content ul#markdown-toc {
+	padding: 0;
+}

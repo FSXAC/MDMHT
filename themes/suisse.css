@@ -1,0 +1,328 @@
+/* Updated 2019-02-22 */
+
+
+/* Global color constants */
+:root {
+	/* Typora CSS variables */
+	--bg-color: #ffffff;
+	--text-color: black;
+	--md-char-color: #C7C5C5;
+	--meta-content-color: #5b808d; /*change color of meta contents like image text or link address in markdown */
+
+	--primary-color: #428bca; /* color of primary buttons */
+	--primary-btn-border-color: #285e8e;
+	--primary-btn-text-color: #fff;
+
+	--window-border: 1px solid #eee; /*border for sidebar, etc*/
+
+	--active-file-border-color: #888;
+	--active-file-text-color: white;
+	--active-file-bg-color: black;
+
+	--side-bar-bg-color: #fafafa; /*change background of sidebar*/
+	--item-hover-bg-color: #808a8e; /*background of control items when hover, like menu in sidebar*/
+	--item-hover-text-color: inherit;
+	
+	--monospace-font: "Fira Code", Consolas, "Liberation Mono", Courier, monospace;
+	--font: "Helvetica", Arial, "Microsoft Yahei", sans-serif;
+	--header-font: "Helvetica", Arial, "Microsoft Yahei", sans-serif;
+
+	/* Custom variables */
+	--header-color: #202828;
+	--link-color: #4183C4;
+	--control-text-color: #777;
+	--meta-text-color: #aaa;
+	--border-color: #ddd;
+
+	--blockquote-width: 6px;
+	--table-head-width: 3px;
+}
+
+/* Use local fonts */
+@font-face {
+    font-family: 'Suisse Intl';
+    src: url('suisse/SuisseIntl-Bold-WebS.woff2') format('woff2'),
+         url('suisse/SuisseIntl-Bold-WebS.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Suisse Intl';
+    src: url('suisse/SuisseIntl-BoldItalic-WebS.woff2') format('woff2'),
+         url('suisse/SuisseIntl-BoldItalic-WebS.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Suisse Intl';
+    src: url('suisse/SuisseIntl-Regular-WebS.woff2') format('woff2'),
+         url('suisse/SuisseIntl-Regular-WebS.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Suisse Intl';
+    src: url('suisse/SuisseIntl-RegularItalic-WebS.woff2') format('woff2'),
+         url('suisse/SuisseIntl-RegularItalic-WebS.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Suisse Intl';
+    src: url('suisse/SuisseIntl-Thin-WebS.woff2') format('woff2'),
+         url('suisse/SuisseIntl-Thin-WebS.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Suisse Intl';
+    src: url('suisse/SuisseIntl-ThinItalic-WebS.woff2') format('woff2'),
+         url('suisse/SuisseIntl-ThinItalic-WebS.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+}
+
+/* Export to PDF/prints style override */
+@media print {
+	html { font-size: 11px; }
+	table, pre { page-break-inside: avoid; }
+	pre { word-wrap: break-word; }
+
+	/* Page break for pdf exports */
+	h1 { page-break-before: always; }
+	h1:first-of-type { page-break-before: avoid; }
+	body { line-height: 1.2; }
+	code, tt {
+		border-radius: 2px;
+		padding: 1px 1px 0px 1px;
+		font-size: 0.8em;
+	}
+}
+
+/* General Text */
+html { font-size: 16px; }
+body {
+	font-family: "Suisse Intl", Helvetica, "Microsoft Yahei", sans-serif;
+	line-height: 1.35;
+	color: black;
+}
+
+/* Markdown content */
+#write {
+	max-width: 900px;
+	padding-top: 20px;
+	padding-bottom: 100px;
+	padding-left: 1em;
+	padding-right: 1em;
+}
+#write > ul:first-child,
+#write > ol:first-child { margin-top: 30px; }
+body > *:first-child { margin-top: 0 !important; }
+body > *:last-child { margin-bottom: 0 !important; }
+
+/* Front matter / meta block style */
+#write pre.md-meta-block {
+	padding: 1rem;
+	line-height: 1.1;
+	background-color: transparent;
+	border: 2px dotted var(--border-color);
+	color: var(--meta-text-color);
+	margin-top: 0 !important;
+	margin-bottom: 2em;
+}
+
+/* Anchor text */
+#write a { color: #0050C9; text-decoration: none; }
+#write a:hover { color: #A92626; text-decoration: underline; }
+
+
+/* Header text general styles */
+h1, h2, h3, h4, h5, h6 { font-weight: bold; }
+h1 {
+	font-size: 3em;
+	line-height: 1.05;
+	border-bottom: 1px solid black;
+}
+h2 {
+	font-size: 2em;
+	line-height: 1.2;
+	border-bottom: 1px dotted black;
+}
+h3 { font-size: 1.5em; line-height: 1.3em; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1.15em; }
+
+/* Header anchor disable style */
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor,
+h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+	text-decoration: none;
+}
+
+/* Header code style */
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code,
+h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+	font-size: inherit;
+}
+
+/* Text/Header interaction edge cases styles */
+body > h2:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+body > h1:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+body > h1:first-child + h2 {
+	margin-top: 0;
+	padding-top: 0;
+}
+body > h3:first-child, body > h4:first-child,
+body > h5:first-child, body > h6:first-child {
+	margin-top: 0;
+	padding-top: 0;
+}
+a:first-child h1, a:first-child h2, a:first-child h3,
+a:first-child h4, a:first-child h5, a:first-child h6 {
+	margin-top: 0;
+	padding-top: 0;
+}
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p { margin-top: 0; }
+
+/* List styles */
+li p.first { display: inline-block; }
+ul, ol { padding-left: 30px; }
+ul:first-child, ol:first-child { margin-top: 0; }
+ul:last-child, ol:last-child { margin-bottom: 0; }
+
+/* Block quote */
+blockquote {
+	margin-bottom: 1.5em;
+	padding: 1em;
+	border-left: 5px solid #aaa;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+blockquote blockquote { padding-right: 2px; }
+blockquote.primary { border-left-color: #4183C4; }
+blockquote.info { border-left-color: darkcyan; }
+blockquote.success { border-left-color: darkgreen; }
+blockquote.warning { border-left-color: #FD971F; }
+blockquote.danger { border-left-color: crimson; }
+
+/* Table styles */
+table { padding: 0; word-break: initial; border-bottom: var(--table-head-width) solid var(--text-color); }
+table tr {
+	border-top: 1px solid var(--text-color);
+	margin: 0;
+	padding: 0;
+}
+table tr:first-child { border-top: 0px; }
+table tr th {
+	font-weight: bold;
+	border: 0;
+	border-bottom: var(--table-head-width) solid var(--text-color);
+	text-align: left;
+	margin: 0;
+	padding: 6px 13px; /* TODO: use constant */
+}
+table tr td {
+	text-align: left;
+	margin: 0;
+	padding: 6px 13px;
+}
+table tr th:first-child, table tr td:first-child { margin-top: 0; }
+table tr th:last-child, table tr td:last-child { margin-bottom: 0; }
+
+/* Highlighted text */
+mark {
+	background: #FFB;
+	border-radius: 3px;
+	padding: 0 4px;
+}
+
+/* General fences style for monospace text */
+.md-fences, code, tt {
+	font-family: "Fira Code", Consolas, "Liberation Mono", Courier, monospace;
+	font-size: .9em;
+}
+code, tt {
+	color: #e83e8c;
+	/* word-break: break-word; */
+}
+.md-fences {
+	margin-bottom: 1.5em;
+	padding: 1em;
+	line-height: 1.2em;
+	box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+/* Code fence CodeMirror syntax colors style (Summerfruit) */
+.cm-s-inner { background: #fdfdfd; color: #111; }
+.cm-s-inner div.CodeMirror-cursor { border-left: 2px solid #111; }
+.cm-s-inner .CodeMirror-selected { background: #b7dce8; }
+.cm-s-inner .cm-comment { color: #22a21f; background: #dbf3cd60; }
+.cm-s-inner .cm-keyword { color: #fb6620; }
+.cm-s-inner .cm-tag { color: #170; }
+.cm-s-inner .cm-def { color: #00f; }
+.cm-s-inner .cm-string { color: #1586d2; }
+.cm-s-inner .cm-variable-2 { color: #F92672; }
+.cm-s-inner .cm-property { color: #13806d; }
+.cm-s-inner .cm-atom { color: #8a4cff; }
+.cm-s-inner .cm-number { color: #8a4cff; }
+.cm-s-inner .cm-operator { color: #fb6620; }
+.cm-s-inner .CodeMirror-linenumber { color: #22a21f; }
+
+/* Task list */
+.task-list{ padding-left: 0; }
+.task-list-item { padding-left:32px; }
+
+/* Image meta box */
+.md-image > .md-meta {
+	border: 1px solid var(--border-color);
+	border-radius: 3px;
+	font-family: var(--monospace-font);
+	padding: 2px 4px 0px 4px;
+	font-size: 0.9em;
+	color: inherit;
+}
+
+/* Focus mode style modifiers */
+#write > h3.md-focus:before { left: -1.5625rem; top: .375rem; }
+#write > h4.md-focus:before { left: -1.5625rem; top: .285714286rem; }
+#write > h5.md-focus:before { left: -1.5625rem; top: .285714286rem; }
+#write > h6.md-focus:before { left: -1.5625rem; top: .285714286rem; }
+.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.12); }
+
+/* Table of content */
+.md-toc { margin-top: 20px; padding-bottom: 20px; line-height: 1.1; }
+
+/* Typora UI */
+#typora-quick-open {
+	border: 1px solid #ddd;
+	background-color: #f8f8f8;
+}
+#typora-quick-open-item {
+	background-color: #FAFAFA;
+	border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+	border-style: solid;
+	border-width: 1px;
+}
+#md-notification:before { top: 10px; }
+
+/* Image caption classes */
+p[style^='caption:'] {
+	text-align: center;
+	font-style: italic;
+}
+
+/* Emoji height alignment */
+#write span.md-emoji-span {
+	position: relative;
+	top: -0.14em;
+}
+
+/* Source code mode */
+#typora-source {
+	font-family: "Fira Code", Consolas, "Liberation Mono", Courier, monospace;
+}
