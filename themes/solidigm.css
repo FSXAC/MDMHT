@@ -1,0 +1,24 @@
+/* define color variables */
+:root {
+    --primary: rgb(79, 0, 181);
+    --light-purple: rgb(141, 89, 207);
+    --dark-purple: rgb(47, 0, 107);
+    --dark-blue: rgb(0, 8, 63);
+    --orange: rgb(255, 164, 44);
+    --light-gray: rgb(245, 243, 241);
+    --gray: rgb(165, 162, 157);
+    --medium-gray: rgb(82, 81, 79);
+    --dark-gray: rgb(33, 32, 31);
+    --teal: rgb(151, 242, 233);
+
+    --text-dark: #000;
+    --text-light: #fff;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Sora', sans-serif;
+    line-height: 1.5;
+    color: var(--dark-gray);
+}
+
