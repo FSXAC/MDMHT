@@ -1,0 +1,156 @@
+html { background-color: white; }
+
+#write {
+    font-size: 11pt;
+    font-family: Courier, monospace;
+    font-weight: lighter;
+    margin-left: 1.5in;
+    margin-right: 1in;
+    max-width: 6in;
+    line-height: 1.1;
+}
+
+/* Slugline / scene header */
+h1, h2, h3 {
+    font-size: 100%;
+    text-transform: uppercase;
+}
+
+/* This is the dialog actor names */
+h2 {
+    margin-left: 2.0in;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+
+/* Dialogue */
+h2 + blockquote, h2 + p + blockquote {
+    margin-left: 1.0in;
+    max-width: 3in;
+    margin-top: 0;
+    margin-bottom: 2em;
+}
+
+blockquote, p { margin-top: 0; }
+
+/* Parantheticals */
+h2 + p {
+    text-transform: lowercase;
+    margin-left: 1.8in;
+    margin-top: 0;
+}
+
+/* Transition */
+h3 {
+    margin-left: 4.5in;
+    font-weight: normal;
+}
+
+pre {
+    min-height: 1rem;
+    padding: .5rem 1rem;
+    background-color: #f8f8f8;
+    overflow: scroll;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+figcaption {
+    margin-top: 4px;
+    font-style: italic;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 2em 0;
+}
+
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -1.8em;
+    margin-right: 8px;
+}
+
+#write table {
+    margin: 15px 0;
+    border-collapse: collapse;
+    width: 100%;
+    padding: 0;
+}
+#write table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+#write table tr:nth-child(2n) {
+    background-color: #f8f8f8;
+}
+#write table tr th {
+    font-weight: bold;
+    border: 1px solid #cccccc;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+#write table tr td {
+    border: 1px solid #cccccc;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+#write table tr th :first-child, table tr td :first-child {
+    margin: 0;
+}
+#write table tr th :last-child, table tr td :last-child {
+    margin: 0;
+}
+#write table caption {
+    margin-bottom: 4px;
+}
+@media (prefers-color-scheme: dark) {
+    background-color: #111; color: #ccc;
+    table tr { background: none; }
+    table tr:nth-child(2n) { background: none; }
+    table tr td, #write table tr th { border: 1px solid #333; }
+}
+
+iframe { 
+    display: block;
+    margin: 1em auto;
+}
+
+@media print {
+    #write {
+        background: transparent !important;
+        padding: 0;
+    }
+}
